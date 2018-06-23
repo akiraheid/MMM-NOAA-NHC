@@ -1,0 +1,22 @@
+{
+  "name": "mmm-noaa-nhc-warnings",
+  "version": "1.0.0",
+  "description": "Magic Mirror module for displaying warnings from NOAA's NHC.",
+  "main": "NOAA-NHC-warnings.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akiraheid/MMM-NOAA-NHC-warnings.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/akiraheid/MMM-NOAA-NHC-warnings/issues"
+  },
+  "homepage": "https://github.com/akiraheid/MMM-NOAA-NHC-warnings#readme",
+  "dependencies": {
+    "request": "^2.87.0"
+  }
+}
