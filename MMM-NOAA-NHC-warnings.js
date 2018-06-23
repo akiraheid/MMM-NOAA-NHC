@@ -8,26 +8,33 @@
 Module.register('MMM-NOAA-NHC-warnings', {
 
 	defaults: {
-		updateInterval: 60 * 60 * 1000 // Every hour
+		showPacific: true,
+		showAtlantic: true,
+		updateInterval: 60 * 60 * 1000, // Every hour
 	},
 
 	start: function() {
+		console.log('starting ' + this.name)
 		Log.info('Starting module: ' + this.name)
 
-		if (this.data.classes === 'MMM-AirNow') {
+		if (this.data.classes === 'MMM-NOAA-NHC-warnings') {
 			this.data.classes = 'bright medium'
 		}
 
 		// Set up the local values, here we construct the request url to use
 		this.loaded = false
+		this.tropicalGraphicalURL = 'https://www.nhc.noaa.gov/gtwo.xml'
 
 		// Trigger the first request
 		this.getData()
 	},
 
 	getData: function() {
-		// Make the initial request to the helper then set up the timer to perform the updates
-		//this.sendSocketNotification('GET-AIR-QUALITY', that.url);
+		// Make the initial request to the helper then set up the timer to perform
+		// the updates
+		this.sendSocketNotification(
+				'UPDATE-TROPICAL-DATA', this.tropicalGraphicalURL);
+
 		setTimeout(this.getData, this.config.interval, this);
 	},
 
@@ -36,30 +43,40 @@ Module.register('MMM-NOAA-NHC-warnings', {
 	},
 
 	getDom: function() {
+		console.error('getdom')
 		// Set up the local wrapper
 		var wrapper = document.createElement('div')
 
-
-		if (this.loaded) {
-			wrapper.className = 'small'
-		} else {
-			// Otherwise lets just use a simple div
-			wrapper.innerHTML = 'Loading NOAA NHC data...'
+		var row = document.createElement('tr')
+		if (this.config.showPacific) {
+			var column = document.createElement('td')
+			var img = document.createElement('img')
+			img.setAttribute('src', 'https://www.nhc.noaa.gov/xgtwo/resize/two_pac_5d0_resize.gif')
+			img.setAttribute('alt', 'Could not load Atlantic image')
+			column.appendChild(img)
+			row.appendChild(column)
 		}
+
+		if (this.config.showAtlantic) {
+			console.log('atlantic')
+			var column = document.createElement('td')
+			var img = document.createElement('img')
+			img.setAttribute('src', 'https://www.nhc.noaa.gov/xgtwo/resize/two_atl_5d0_resize.gif')
+			img.setAttribute('alt', 'Could not load Atlantic image')
+			column.appendChild(img)
+			row.appendChild(column)
+		}
+
+		var imageTable = document.createElement('table')
+		imageTable.appendChild(row)
+		wrapper.appendChild(imageTable)
 
 		return wrapper
 	},
 
 	socketNotificationReceived: function(notification, payload) {
-		/*
-		// check to see if the response was for us and used the same url
-		if (notification === 'GOT-AIR-QUALITY' && payload.url === this.url) {
-			// we got some data so set the flag, stash the data to display then request the dom update
-			this.loaded = true
-			this.location = payload.location
-			this.result = payload.result
+		if (notification === 'UPDATE-TROPICAL-DATA') {
 			this.updateDom(1000)
 		}
-		*/
 	}
 })

@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/akiraheid/MMM-NOAA-NHC-warnings#readme",
   "dependencies": {
-    "request": "^2.87.0"
+    "request": "^2.87.0",
+    "xmldom": "^0.1.27"
   }
 }
