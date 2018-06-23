@@ -33,49 +33,54 @@ Module.register('MMM-NOAA-NHC-warnings', {
 		// Make the initial request to the helper then set up the timer to perform
 		// the updates
 		this.sendSocketNotification(
-				'UPDATE-TROPICAL-DATA', this.tropicalGraphicalURL);
+				'GET-TROPICAL-DATA', this.tropicalGraphicalURL);
 
 		setTimeout(this.getData, this.config.interval, this);
 	},
 
 	getStyles: function() {
-		return ['MMM-NOAA-NHC-warnings.css']
+		return ['MMM-NOAA-NHC.css']
 	},
 
 	getDom: function() {
-		console.error('getdom')
 		// Set up the local wrapper
 		var wrapper = document.createElement('div')
 
-		var row = document.createElement('tr')
-		if (this.config.showPacific) {
-			var column = document.createElement('td')
-			var img = document.createElement('img')
-			img.setAttribute('src', 'https://www.nhc.noaa.gov/xgtwo/resize/two_pac_5d0_resize.gif')
-			img.setAttribute('alt', 'Could not load Pacific image')
-			column.appendChild(img)
-			row.appendChild(column)
-		}
+		if (this.loaded) {
+			var row = document.createElement('tr')
+			if (this.config.showPacific && this.result.pacificActive) {
+				var column = document.createElement('td')
+				var img = document.createElement('img')
+				img.setAttribute('src', 'https://www.nhc.noaa.gov/xgtwo/resize/two_pac_5d0_resize.gif')
+				img.setAttribute('alt', 'Could not load Pacific image')
+				column.appendChild(img)
+				row.appendChild(column)
+			}
 
-		if (this.config.showAtlantic) {
-			console.log('atlantic')
-			var column = document.createElement('td')
-			var img = document.createElement('img')
-			img.setAttribute('src', 'https://www.nhc.noaa.gov/xgtwo/resize/two_atl_5d0_resize.gif')
-			img.setAttribute('alt', 'Could not load Atlantic image')
-			column.appendChild(img)
-			row.appendChild(column)
-		}
+			if (this.config.showAtlantic && this.result.atlanticActive) {
+				console.log('atlantic')
+				var column = document.createElement('td')
+				var img = document.createElement('img')
+				img.setAttribute('src', 'https://www.nhc.noaa.gov/xgtwo/resize/two_atl_5d0_resize.gif')
+				img.setAttribute('alt', 'Could not load Atlantic image')
+				column.appendChild(img)
+				row.appendChild(column)
+			}
 
-		var imageTable = document.createElement('table')
-		imageTable.appendChild(row)
-		wrapper.appendChild(imageTable)
+			var imageTable = document.createElement('table')
+			imageTable.appendChild(row)
+			wrapper.appendChild(imageTable)
+		} else {
+			wrapper.innerHTML = "Loading NOAA NHC data..."
+		}
 
 		return wrapper
 	},
 
 	socketNotificationReceived: function(notification, payload) {
-		if (notification === 'UPDATE-TROPICAL-DATA') {
+		if (notification === 'GOT-TROPICAL-DATA') {
+			this.loaded = true
+			this.result = payload.result
 			this.updateDom(1000)
 		}
 	}
