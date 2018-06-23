@@ -52,7 +52,7 @@ Module.register('MMM-NOAA-NHC-warnings', {
 			var column = document.createElement('td')
 			var img = document.createElement('img')
 			img.setAttribute('src', 'https://www.nhc.noaa.gov/xgtwo/resize/two_pac_5d0_resize.gif')
-			img.setAttribute('alt', 'Could not load Atlantic image')
+			img.setAttribute('alt', 'Could not load Pacific image')
 			column.appendChild(img)
 			row.appendChild(column)
 		}
