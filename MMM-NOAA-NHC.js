@@ -1,11 +1,11 @@
-/* Magic Mirror Module: MMM-NOAA-NHC-warnings
+/* Magic Mirror Module: MMM-NOAA-NHC
  * Version: 1.0.0
  *
  * By Akira Heid https://github.com/akiraheid/
  * MIT Licensed.
  */
 
-Module.register('MMM-NOAA-NHC-warnings', {
+Module.register('MMM-NOAA-NHC', {
 
 	defaults: {
 		showPacific: true,
@@ -13,11 +13,12 @@ Module.register('MMM-NOAA-NHC-warnings', {
 		updateInterval: 60 * 60 * 1000, // Every hour
 	},
 
+
 	start: function() {
 		console.log('starting ' + this.name)
 		Log.info('Starting module: ' + this.name)
 
-		if (this.data.classes === 'MMM-NOAA-NHC-warnings') {
+		if (this.data.classes === 'MMM-NOAA-NHC') {
 			this.data.classes = 'bright medium'
 		}
 
@@ -29,6 +30,7 @@ Module.register('MMM-NOAA-NHC-warnings', {
 		this.getData()
 	},
 
+
 	getData: function() {
 		// Make the initial request to the helper then set up the timer to perform
 		// the updates
@@ -38,9 +40,11 @@ Module.register('MMM-NOAA-NHC-warnings', {
 		setTimeout(this.getData, this.config.interval, this);
 	},
 
+
 	getStyles: function() {
-		return ['MMM-NOAA-NHC.css']
+		return []
 	},
+
 
 	getDom: function() {
 		// Set up the local wrapper
@@ -76,6 +80,7 @@ Module.register('MMM-NOAA-NHC-warnings', {
 
 		return wrapper
 	},
+
 
 	socketNotificationReceived: function(notification, payload) {
 		if (notification === 'GOT-TROPICAL-DATA') {
