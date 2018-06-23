@@ -20,17 +20,13 @@ module.exports = NodeHelper.create({
 
 
 	getData: function(payload) {
-
 		var that = this
 		this.url = payload
 
 		request({url: this.url, method: 'GET'}, function(error, response, body) {
-			// Check to see if we are error free and got an OK response
 			if (!error && response.statusCode == 200) {
 				var result = {}
 				var doc = new DOMParser().parseFromString(body)
-				var atlanticActive = false
-				var pacificActive = false
 				var descriptions = doc.getElementsByTagName('description')
 
 				result.atlanticActive = that.isAreaActive(descriptions[2].textContent)
@@ -47,7 +43,7 @@ module.exports = NodeHelper.create({
 
 
 	isAreaActive: function(cdata) {
-		console.log(cdata)
+		// Parse CDATA text and determine if there is activity
 		var doc = new DOMParser().parseFromString(cdata)
 		var text = doc.getElementsByTagName('div')[1].textContent
 		return text.search(/formation is not expected/) == -1

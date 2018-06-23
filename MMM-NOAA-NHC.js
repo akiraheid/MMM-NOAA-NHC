@@ -8,6 +8,7 @@
 Module.register('MMM-NOAA-NHC', {
 
 	defaults: {
+		showOnlyActive: true,
 		showPacific: true,
 		showAtlantic: true,
 		updateInterval: 60 * 60 * 1000, // Every hour
@@ -15,7 +16,6 @@ Module.register('MMM-NOAA-NHC', {
 
 
 	start: function() {
-		console.log('starting ' + this.name)
 		Log.info('Starting module: ' + this.name)
 
 		if (this.data.classes === 'MMM-NOAA-NHC') {
@@ -27,17 +27,17 @@ Module.register('MMM-NOAA-NHC', {
 		this.tropicalGraphicalURL = 'https://www.nhc.noaa.gov/gtwo.xml'
 
 		// Trigger the first request
-		this.getData()
+		this.getData(this)
 	},
 
 
-	getData: function() {
+	getData: function(that) {
 		// Make the initial request to the helper then set up the timer to perform
 		// the updates
-		this.sendSocketNotification(
-				'GET-TROPICAL-DATA', this.tropicalGraphicalURL);
+		that.sendSocketNotification(
+				'GET-TROPICAL-DATA', that.tropicalGraphicalURL);
 
-		setTimeout(this.getData, this.config.interval, this);
+		setTimeout(that.getData, that.config.interval, that);
 	},
 
 
@@ -52,22 +52,35 @@ Module.register('MMM-NOAA-NHC', {
 
 		if (this.loaded) {
 			var row = document.createElement('tr')
-			if (this.config.showPacific && this.result.pacificActive) {
+			if (this.config.showPacific) {
 				var column = document.createElement('td')
-				var img = document.createElement('img')
-				img.setAttribute('src', 'https://www.nhc.noaa.gov/xgtwo/resize/two_pac_5d0_resize.gif')
-				img.setAttribute('alt', 'Could not load Pacific image')
-				column.appendChild(img)
+				if (this.result.pacificActive) {
+					var img = document.createElement('img')
+					img.setAttribute('src', 'https://www.nhc.noaa.gov/xgtwo/resize/two_pac_5d0_resize.gif')
+					img.setAttribute('alt', 'Could not load Pacific image')
+					column.appendChild(img)
+				} else {
+					var span = document.createElement('span')
+					span.innerHTML = 'No<br/>Pacific>br/>Activity'
+					span.className = 'small vert-center'
+					column.appendChild(span)
+				}
 				row.appendChild(column)
 			}
 
-			if (this.config.showAtlantic && this.result.atlanticActive) {
-				console.log('atlantic')
+			if (this.config.showAtlantic) {
 				var column = document.createElement('td')
-				var img = document.createElement('img')
-				img.setAttribute('src', 'https://www.nhc.noaa.gov/xgtwo/resize/two_atl_5d0_resize.gif')
-				img.setAttribute('alt', 'Could not load Atlantic image')
-				column.appendChild(img)
+				if (this.result.atlanticActive) {
+					var img = document.createElement('img')
+					img.setAttribute('src', 'https://www.nhc.noaa.gov/xgtwo/resize/two_atl_5d0_resize.gif')
+					img.setAttribute('alt', 'Could not load Atlantic image')
+					column.appendChild(img)
+				} else {
+					var span = document.createElement('span')
+					span.innerHTML = 'No<br/>Atlantic<br/>Activity'
+					span.className = 'small vert-center'
+					column.appendChild(span)
+				}
 				row.appendChild(column)
 			}
 
