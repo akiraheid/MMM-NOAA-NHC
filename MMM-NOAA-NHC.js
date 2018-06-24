@@ -42,7 +42,7 @@ Module.register('MMM-NOAA-NHC', {
 
 
 	getStyles: function() {
-		return []
+		return ['MMM-NOAA-NHC.css']
 	},
 
 
@@ -62,7 +62,7 @@ Module.register('MMM-NOAA-NHC', {
 				} else {
 					var span = document.createElement('span')
 					span.innerHTML = 'No<br/>Pacific>br/>Activity'
-					span.className = 'small vert-center'
+					span.className = 'small no-activity'
 					column.appendChild(span)
 				}
 				row.appendChild(column)
@@ -78,7 +78,7 @@ Module.register('MMM-NOAA-NHC', {
 				} else {
 					var span = document.createElement('span')
 					span.innerHTML = 'No<br/>Atlantic<br/>Activity'
-					span.className = 'small vert-center'
+					span.className = 'small no-activity'
 					column.appendChild(span)
 				}
 				row.appendChild(column)
