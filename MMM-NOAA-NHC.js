@@ -37,7 +37,7 @@ Module.register('MMM-NOAA-NHC', {
 		that.sendSocketNotification(
 				'GET-TROPICAL-DATA', that.tropicalGraphicalURL);
 
-		setTimeout(that.getData, that.config.interval, that);
+		setTimeout(that.getData, that.config.updateInterval, that);
 	},
 
 

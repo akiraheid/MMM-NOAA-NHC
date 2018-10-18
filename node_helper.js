@@ -34,6 +34,7 @@ module.exports = NodeHelper.create({
 				that.result = result
 			} else {
 				// In all other cases it's some other error
+				console.log('Error: Couldn\'t load data')
 			}
 
 			that.sendSocketNotification(
