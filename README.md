@@ -1,3 +1,8 @@
+<p align="center">
+    <a href="https://choosealicense.com/licenses/mit"><img src="https://img.shields.io/badge/license-MIT-blie.svg" alt="MIT License"></a>
+    <a href="https://david-dm.org/akiraheid/MMM-NOAA-NHC"><img src="https://david-dm.org/akiraheid/MMM-NOAA-NHC.svg"></a>
+</p>
+
 # MMM-NOAA-NHC
 Display information from the U.S. National Oceanic and Atmospheric Administration (NOAA) National Hurricane Center (NHC) Graphical Tropical Weather Outlooks [RSS feed](https://www.nhc.noaa.gov/gtwo.xml) for the [Magic Mirror](https://github.com/MichMich/MagicMirror).
 
