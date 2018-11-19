@@ -10,8 +10,9 @@
         "sourceType": "module"
     },
     "rules": {
-        "indent": ["error", 4],
+        "indent": ["error", "tab"],
         "linebreak-style": ["error", "unix"],
+        "no-mixed-spaces-and-tabs": "error",
         "no-var": "error",
         "prefer-const": ["error", {
             "destructuring": "any",
