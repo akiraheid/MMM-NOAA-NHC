@@ -1,21 +1,18 @@
 {
-  "name": "mmm-noaa-nhc-warnings",
+  "name": "MMM-NOAA-NHC",
   "version": "1.0.0",
-  "description": "Magic Mirror module for displaying warnings from NOAA's NHC.",
-  "main": "NOAA-NHC-warnings.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "description": "Magic Mirror module for displaying storm images from NOAA's NHC.",
+  "main": "MMM-NOAA-NHC.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/akiraheid/MMM-NOAA-NHC-warnings.git"
+    "url": "git+https://github.com/akiraheid/MMM-NOAA-NHC.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/akiraheid/MMM-NOAA-NHC-warnings/issues"
+    "url": "https://github.com/akiraheid/MMM-NOAA-NHC/issues"
   },
-  "homepage": "https://github.com/akiraheid/MMM-NOAA-NHC-warnings#readme",
+  "homepage": "https://github.com/akiraheid/MMM-NOAA-NHC",
   "dependencies": {
     "request": "^2.87.0",
     "xmldom": "^0.1.27"
