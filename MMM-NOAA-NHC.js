@@ -5,6 +5,8 @@
  * MIT Licensed.
  */
 
+// Module is defined in the Magic Mirror repo
+// eslint-disable-next-line no-undef
 Module.register('MMM-NOAA-NHC', {
 
 	defaults: {
@@ -16,6 +18,8 @@ Module.register('MMM-NOAA-NHC', {
 
 
 	start: function() {
+		// Log is defined in the Magic Mirror repo
+		// eslint-disable-next-line no-undef
 		Log.info('Starting module: ' + this.name)
 
 		if (this.data.classes === 'MMM-NOAA-NHC') {
@@ -35,9 +39,9 @@ Module.register('MMM-NOAA-NHC', {
 		// Make the initial request to the helper then set up the timer to perform
 		// the updates
 		that.sendSocketNotification(
-				'GET-TROPICAL-DATA', that.tropicalGraphicalURL);
+			'GET-TROPICAL-DATA', that.tropicalGraphicalURL)
 
-		setTimeout(that.getData, that.config.updateInterval, that);
+		setTimeout(that.getData, that.config.updateInterval, that)
 	},
 
 
@@ -48,20 +52,20 @@ Module.register('MMM-NOAA-NHC', {
 
 	getDom: function() {
 		// Set up the local wrapper
-		var wrapper = document.createElement('div')
+		const wrapper = document.createElement('div')
 
 		if (this.loaded) {
-			var row = document.createElement('tr')
+			const row = document.createElement('tr')
 			if (this.config.showPacific) {
-				var column = document.createElement('td')
+				const column = document.createElement('td')
 				if (this.result.pacificActive) {
-					var img = document.createElement('img')
+					const img = document.createElement('img')
 					img.setAttribute('src', 'https://www.nhc.noaa.gov/xgtwo/resize/two_pac_5d0_resize.gif')
 					img.setAttribute('alt', 'Could not load Pacific image')
 					column.appendChild(img)
 				} else {
-					var span = document.createElement('span')
-					span.innerHTML = 'No<br/>Pacific>br/>Activity'
+					const span = document.createElement('span')
+					span.innerHTML = 'No<br/>Pacific<br/>Activity'
 					span.className = 'small no-activity'
 					column.appendChild(span)
 				}
@@ -69,14 +73,14 @@ Module.register('MMM-NOAA-NHC', {
 			}
 
 			if (this.config.showAtlantic) {
-				var column = document.createElement('td')
+				const column = document.createElement('td')
 				if (this.result.atlanticActive) {
-					var img = document.createElement('img')
+					const img = document.createElement('img')
 					img.setAttribute('src', 'https://www.nhc.noaa.gov/xgtwo/resize/two_atl_5d0_resize.gif')
 					img.setAttribute('alt', 'Could not load Atlantic image')
 					column.appendChild(img)
 				} else {
-					var span = document.createElement('span')
+					const span = document.createElement('span')
 					span.innerHTML = 'No<br/>Atlantic<br/>Activity'
 					span.className = 'small no-activity'
 					column.appendChild(span)
@@ -84,11 +88,11 @@ Module.register('MMM-NOAA-NHC', {
 				row.appendChild(column)
 			}
 
-			var imageTable = document.createElement('table')
+			const imageTable = document.createElement('table')
 			imageTable.appendChild(row)
 			wrapper.appendChild(imageTable)
 		} else {
-			wrapper.innerHTML = "Loading NOAA NHC data..."
+			wrapper.innerHTML = 'Loading NOAA NHC data...'
 		}
 
 		return wrapper

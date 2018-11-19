@@ -7,6 +7,9 @@
     "type": "git",
     "url": "git+https://github.com/akiraheid/MMM-NOAA-NHC.git"
   },
+  "scripts": {
+      "lint": "node ./node_modules/eslint/bin/eslint.js . && echo \"No linting issues\""
+  },
   "author": "",
   "license": "MIT",
   "bugs": {
@@ -16,5 +19,8 @@
   "dependencies": {
     "request": "^2.87.0",
     "xmldom": "^0.1.27"
+  },
+  "devDependencies": {
+    "eslint": "^5.9.0"
   }
 }
