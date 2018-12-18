@@ -41,8 +41,8 @@ module.exports = NodeHelper.create({
 	isAreaActive: function(cdata) {
 		// Parse CDATA text and determine if there is activity
 		const doc = new DOMParser().parseFromString(cdata)
-		const text = doc.getElementsByTagName('div')[1].textContent
-		return text.search(/formation is not expected/) == -1
+		const textDiv = doc.getElementsByTagName('div')[1]
+		return textDiv == undefined ? false : textDiv.textContent.search(/formation is not expected/) == -1
 	},
 
 
