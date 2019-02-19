@@ -1,26 +1,26 @@
 {
-  "name": "MMM-NOAA-NHC",
-  "version": "1.0.0",
-  "description": "Magic Mirror module for displaying storm images from NOAA's NHC.",
-  "main": "MMM-NOAA-NHC.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/akiraheid/MMM-NOAA-NHC.git"
-  },
-  "scripts": {
-      "lint": "node ./node_modules/eslint/bin/eslint.js . && echo \"No linting issues\""
-  },
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/akiraheid/MMM-NOAA-NHC/issues"
-  },
-  "homepage": "https://github.com/akiraheid/MMM-NOAA-NHC",
-  "dependencies": {
-    "request": "^2.87.0",
-    "xmldom": "^0.1.27"
-  },
-  "devDependencies": {
-    "eslint": "^5.9.0"
-  }
+	"name": "MMM-NOAA-NHC",
+	"version": "1.0.0",
+	"description": "Magic Mirror module for displaying storm images from NOAA's NHC.",
+	"main": "MMM-NOAA-NHC.js",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/akiraheid/MMM-NOAA-NHC.git"
+	},
+	"scripts": {
+		"lint": "node ./node_modules/eslint/bin/eslint.js . && echo \"No linting issues\""
+	},
+	"author": "",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/akiraheid/MMM-NOAA-NHC/issues"
+	},
+	"homepage": "https://github.com/akiraheid/MMM-NOAA-NHC",
+	"dependencies": {
+		"request": "^2.87.0",
+		"xmldom": "^0.1.27"
+	},
+	"devDependencies": {
+		"eslint": "^5.9.0"
+	}
 }
