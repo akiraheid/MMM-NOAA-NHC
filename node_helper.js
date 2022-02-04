@@ -7,7 +7,7 @@
 
 const NodeHelper = require('node_helper')
 const request = require('request')
-const DOMParser = require('xmldom').DOMParser
+const DOMParser = require('@xmldom/xmldom').DOMParser
 
 module.exports = NodeHelper.create({
 
